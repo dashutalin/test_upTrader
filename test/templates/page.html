@@ -1,0 +1,32 @@
+{% load static %}
+{% load tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static "menu.css" %}">
+    <title>Menu</title>
+</head>
+<body>
+    {% draw_menu 'main' as menu %}
+    <ul class="main_menu">
+        {% for point in menu %}
+            <li><a  href="{% url 'menu:page' point.slug %}">{{ point }}</a></li>
+        {% endfor %}
+    </ul>
+    <ul>
+        {% for last in last_points %}
+        {% with url="/"|add:last.slug|add:"/" %}
+            <li><a class="{% if request.path == url %} active {% endif %}" href="{% url 'menu:page' last.slug %}">{{ last.name }}</a></li>
+            <ul>
+                {% for point in points %}
+                    {% if last.name == point.main_menu__name %}
+                        <li><a href="{% url 'menu:page' point.submenu__slug %}">{{ point.submenu__name }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endwith %}
+        {% endfor %}
+    </ul>
+</body>
+</html>

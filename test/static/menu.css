@@ -1,0 +1,17 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.active {
+    color: red;
+}
+
+.main_menu {
+    display: flex;
+    justify-content: space-around;
+}
+
+.main_menu li {
+    list-style-type: none;
+}

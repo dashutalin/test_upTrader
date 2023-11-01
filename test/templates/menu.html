@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "menu.css" %}">
+    <title>Menu</title>
+</head>
+<body>
+    <ul class="main_menu">
+       {% for point in points %}
+            <li><a  href="{% url 'menu:page' point.slug %}">{{ point }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
